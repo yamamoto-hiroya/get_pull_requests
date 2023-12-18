@@ -1,0 +1,19 @@
+{
+  "query": "query {
+    search(first: 100, query: \"user:集計対象のユーザー名 is:pr is:merged merged:2023-12-01..2023-12-25 base:master base:main\", type: ISSUE) {
+      nodes {
+        ... on PullRequest {
+          title
+          permalink
+          repository{name}
+          author{login}
+          baseRefName
+          mergedAt
+          updatedAt
+          commits(first: 1){nodes{commit{committedDate}}}
+        }
+      }
+      pageInfo{endCursor hasNextPage}
+    }
+  }"
+}
